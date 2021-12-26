@@ -15,12 +15,45 @@
         android:usesCleartextTraffic="true"
         android:networkSecurityConfig="@xml/network_security_config"
         >
-
+        EditAnswerActivity
         <activity
             android:name=".Activities.RegistrationActivity"
             android:exported="true" />
         <activity
             android:name=".Activities.UserInfoActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Activities.CreateSurveyActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Activities.MySurveyActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Activities.EditSurveyActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Activities.EditAnswerActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Activities.SurveyAttemptActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Activities.CreateQuestionActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Activities.CreateTypeActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Activities.EditQuestionActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Activities.RunAttemptActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Activities.EditSurveyResults"
+            android:exported="true" />
+        <activity
+            android:name=".Activities.ShowResultActivity"
             android:exported="true" />
         <activity
             android:name=".Activities.MainActivity"

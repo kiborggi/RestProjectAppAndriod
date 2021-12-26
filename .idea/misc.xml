@@ -3,10 +3,32 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Vlad/AndroidStudioProjects/RestProject/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2076923076923077" />
+        <entry key="..\:/Users/Vlad/AndroidStudioProjects/RestProject/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2076923076923077" />
+        <entry key="..\:/Users/Vlad/AndroidStudioProjects/RestProject/app/src/main/res/layout/activity_create_question.xml" value="0.4041666666666667" />
+        <entry key="..\:/Users/Vlad/AndroidStudioProjects/RestProject/app/src/main/res/layout/activity_create_survey.xml" value="0.4041666666666667" />
+        <entry key="..\:/Users/Vlad/AndroidStudioProjects/RestProject/app/src/main/res/layout/activity_create_type.xml" value="0.4041666666666667" />
+        <entry key="..\:/Users/Vlad/AndroidStudioProjects/RestProject/app/src/main/res/layout/activity_edit_answer.xml" value="0.4041666666666667" />
+        <entry key="..\:/Users/Vlad/AndroidStudioProjects/RestProject/app/src/main/res/layout/activity_edit_question.xml" value="0.4041666666666667" />
+        <entry key="..\:/Users/Vlad/AndroidStudioProjects/RestProject/app/src/main/res/layout/activity_edit_survey.xml" value="0.4041666666666667" />
+        <entry key="..\:/Users/Vlad/AndroidStudioProjects/RestProject/app/src/main/res/layout/activity_edit_survey_result.xml" value="0.4" />
         <entry key="..\:/Users/Vlad/AndroidStudioProjects/RestProject/app/src/main/res/layout/activity_main.xml" value="0.536" />
+        <entry key="..\:/Users/Vlad/AndroidStudioProjects/RestProject/app/src/main/res/layout/activity_my_survey.xml" value="0.2296875" />
         <entry key="..\:/Users/Vlad/AndroidStudioProjects/RestProject/app/src/main/res/layout/activity_registratin.xml" value="0.4041666666666667" />
         <entry key="..\:/Users/Vlad/AndroidStudioProjects/RestProject/app/src/main/res/layout/activity_registration.xml" value="0.4041666666666667" />
+        <entry key="..\:/Users/Vlad/AndroidStudioProjects/RestProject/app/src/main/res/layout/activity_run_attempt.xml" value="0.24479166666666666" />
+        <entry key="..\:/Users/Vlad/AndroidStudioProjects/RestProject/app/src/main/res/layout/activity_show_result.xml" value="0.24166666666666667" />
+        <entry key="..\:/Users/Vlad/AndroidStudioProjects/RestProject/app/src/main/res/layout/activity_survey_attempt.xml" value="0.264" />
         <entry key="..\:/Users/Vlad/AndroidStudioProjects/RestProject/app/src/main/res/layout/activity_user_info.xml" value="0.264" />
+        <entry key="..\:/Users/Vlad/AndroidStudioProjects/RestProject/app/src/main/res/layout/customborder.xml" value="0.19479166666666667" />
+        <entry key="..\:/Users/Vlad/AndroidStudioProjects/RestProject/app/src/main/res/layout/list_answer.xml" value="0.4041666666666667" />
+        <entry key="..\:/Users/Vlad/AndroidStudioProjects/RestProject/app/src/main/res/layout/list_answer_for_attempt.xml" value="0.26666666666666666" />
+        <entry key="..\:/Users/Vlad/AndroidStudioProjects/RestProject/app/src/main/res/layout/list_answer_type_value.xml" value="0.37407407407407406" />
+        <entry key="..\:/Users/Vlad/AndroidStudioProjects/RestProject/app/src/main/res/layout/list_question.xml" value="0.4" />
+        <entry key="..\:/Users/Vlad/AndroidStudioProjects/RestProject/app/src/main/res/layout/list_survey.xml" value="0.536" />
+        <entry key="..\:/Users/Vlad/AndroidStudioProjects/RestProject/app/src/main/res/layout/list_survey_result.xml" value="0.72" />
+        <entry key="..\:/Users/Vlad/AndroidStudioProjects/RestProject/app/src/main/res/layout/list_type.xml" value="0.2911458333333333" />
+        <entry key="..\:/Users/Vlad/AndroidStudioProjects/RestProject/app/src/main/res/layout/run_attempt_activity.xml" value="0.24166666666666667" />
         <entry key="..\:/Users/Vlad/AndroidStudioProjects/RestProject/app/src/main/res/xml/network_security_config.xml" value="0.1515625" />
       </map>
     </option>

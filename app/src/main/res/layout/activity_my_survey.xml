@@ -5,20 +5,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="2sp">
+    android:padding="2sp"
+    android:label="Мои опросы">
 
-    <TextView
-        android:id="@+id/userView"
-        android:layout_width="244dp"
-        android:layout_height="68dp"
-        app:layout_constraintBottom_toTopOf="@+id/listOfMyAttempts"
-        app:layout_constraintEnd_toStartOf="@+id/button2"
-        app:layout_constraintHorizontal_bias="0.06"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.941">
 
-    </TextView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listOfMyAttempts"
@@ -34,13 +24,13 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/createNewSurvey"
         android:layout_width="120dp"
         android:layout_height="60dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
-        android:onClick="onClickMySurvey"
-        android:text="Мои опросы"
+        android:onClick="onClickCreateSurvey"
+        android:text="Создать опрос"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
