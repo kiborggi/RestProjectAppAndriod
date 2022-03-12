@@ -7,12 +7,15 @@
 
     <EditText
         android:id="@+id/nameOfSurvey"
-        android:layout_width="320dp"
+        android:layout_width="0dp"
         android:layout_height="41dp"
-        android:layout_marginTop="108dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="Название опроса"
         android:inputType="textPersonName"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.175"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,12 +23,15 @@
 
     <EditText
         android:id="@+id/decriptionOfSurvey"
-        android:layout_width="334dp"
+        android:layout_width="0dp"
         android:layout_height="211dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="128dp"
+        android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="Описание опроса"
         android:inputType="textPersonName"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.169"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,11 +41,11 @@
         android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="136dp"
+        android:layout_marginBottom="8dp"
         android:onClick="onClickCreateSurvey"
         android:text="Создать опрос"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/decriptionOfSurvey" />
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

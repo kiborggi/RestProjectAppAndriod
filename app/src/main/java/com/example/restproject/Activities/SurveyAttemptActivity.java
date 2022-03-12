@@ -8,11 +8,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.restproject.R;
 
 import java.util.List;
 
+import Adapters.AttemptAdapter;
+import Adapters.SurveyAdapter;
+import DTO.ForAttempt.AttemptDTO;
 import DTO.LoginReq;
 import DTO.LoginResponse;
 import DTO.SurveyDTO;
@@ -29,6 +33,8 @@ public class SurveyAttemptActivity extends AppCompatActivity {
     TextView surveyAttemptDesc;
     String token;
     Intent runAttemptIntent;
+    Intent runTestAttmptTetstIntentt;
+    RecyclerView listOfMyAttempts;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_survey_attempt);
@@ -39,7 +45,15 @@ public class SurveyAttemptActivity extends AppCompatActivity {
         runAttemptIntent = new Intent(this,RunAttemptActivity.class);
         runAttemptIntent.putExtra("token",token);
         runAttemptIntent.putExtra("surveyId",surveyId);
-        getSurvey(token,surveyId);
+
+        listOfMyAttempts = findViewById(R.id.listOfMyAttempts);
+        runTestAttmptTetstIntentt = new Intent(this,RunAttemptTestActivity.class);
+
+        runTestAttmptTetstIntentt.putExtra("token",token);
+        runTestAttmptTetstIntentt.putExtra("surveyId",surveyId);
+
+        getSurvey(token,this,surveyId);
+
     }
 
 
@@ -50,6 +64,9 @@ public class SurveyAttemptActivity extends AppCompatActivity {
     }
 
 
+    public void onClickTestStartAttempt(View view){
+        startActivity(runTestAttmptTetstIntentt);
+    }
 
 
 
@@ -58,8 +75,7 @@ public class SurveyAttemptActivity extends AppCompatActivity {
 
 
 
-
-    private void getSurvey(String token,long id) {
+    private void getSurvey(String token,Context context,long id) {
 
         Call<SurveyDTO> call1 = NetworkService.getInstance()
                 .getJSONApi().getSurvey("Bearer_" + token,id);
@@ -70,6 +86,7 @@ public class SurveyAttemptActivity extends AppCompatActivity {
                 if (surveyDTO != null) {
                     surveyAttemptName.setText(surveyDTO.getName());
                     surveyAttemptDesc.setText(surveyDTO.getDescription());
+                    getAttempts(token,context,surveyDTO.getId());
                 }
                 else{
 
@@ -81,6 +98,40 @@ public class SurveyAttemptActivity extends AppCompatActivity {
                 t.printStackTrace();
                 call.cancel();
             }
+        });
+    }
+
+
+    private void getAttempts(String token, Context context,long surveyId) {
+
+        Call<List<AttemptDTO>> call1 = NetworkService.getInstance()
+                .getJSONApi().getAttemptsOfSurvey("Bearer_" + token,surveyId);
+        call1.enqueue(new Callback<List<AttemptDTO>>() {
+            @Override
+            public void onResponse(Call<List<AttemptDTO>> call, Response<List<AttemptDTO>> response) {
+                List<AttemptDTO> attemptDTOList = response.body();
+                if (attemptDTOList != null) {
+                    AttemptAdapter.OnAttemptClickListener attemptClickListener = new AttemptAdapter.OnAttemptClickListener() {
+                        @Override
+                        public void OnAttemptClick(AttemptDTO q) {
+
+                        }
+
+
+                    };
+
+                    AttemptAdapter adapter = new AttemptAdapter(context,attemptDTOList,attemptClickListener);
+                    listOfMyAttempts.setAdapter(adapter);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<AttemptDTO>> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "onFailure called getAllSurveys", Toast.LENGTH_SHORT).show();
+                t.printStackTrace();
+                call.cancel();
+            }
+
         });
     }
 

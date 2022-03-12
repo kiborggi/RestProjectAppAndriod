@@ -5,9 +5,11 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
@@ -27,7 +29,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class EditSurveyActivity extends AppCompatActivity {
+public class EditSurveyActivity extends AppCompatActivity implements
+        CompoundButton.OnCheckedChangeListener {
 
     String token;
     long surveyId;
@@ -40,7 +43,7 @@ public class EditSurveyActivity extends AppCompatActivity {
     Intent createQuestionIntent;
     Intent createTypeIntent;
     Intent editQuestionIntent;
-
+    ToggleButton toogleButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +54,12 @@ public class EditSurveyActivity extends AppCompatActivity {
 
         surveyName = (TextView) findViewById(R.id.surveyName);
         surveyDesc =(TextView) findViewById(R.id.surveyDesc);
+
         surveyName.setText(getIntent().getExtras().get("surveyName").toString());
         surveyDesc.setText(getIntent().getExtras().get("surveyDesc").toString());
+
+        toogleButton = (ToggleButton) findViewById(R.id.toggleButton);
+
 
         createQuestionIntent = new Intent(this,CreateQuestionActivity.class);
         createTypeIntent = new Intent(this,CreateTypeActivity.class);
@@ -60,7 +67,7 @@ public class EditSurveyActivity extends AppCompatActivity {
 
         recyclerViewQuestion = findViewById(R.id.listQuestion);
         recyclerViewType = findViewById(R.id.typeList);
-
+        getSurvey(token,this,surveyId,this::onCheckedChanged);
         getSurveyQuestions(token,this,surveyId);
         getSurveyTypes(token,this,surveyId);
     }
@@ -81,14 +88,16 @@ public class EditSurveyActivity extends AppCompatActivity {
                         @Override
                         public void OnQuestionClick(QuestionDTO q,QuestionAdapter.ViewHolder holder) {
 
+                                editQuestionIntent.putExtra("token", token);
+                                editQuestionIntent.putExtra("surveyId", surveyId);
+                                editQuestionIntent.putExtra("questionId", q.getId());
+                                editQuestionIntent.putExtra("questionType",q.getTypeOfQuestion());
+                                editQuestionIntent.putExtra("questionText", q.getText());
 
-                            editQuestionIntent.putExtra("token",token);
-                            System.out.println("puting in editQuestionIntent SurvId  = " + surveyId);
-                            editQuestionIntent.putExtra("surveyId",surveyId);
-                            editQuestionIntent.putExtra("questionId",q.getId());
-                            System.out.println("Put  questionText " + q.getText());
-                            editQuestionIntent.putExtra("questionText",q.getText());
-                            startActivity(editQuestionIntent);
+
+                                editQuestionIntent.putExtra("surveyName",getIntent().getExtras().get("surveyName").toString());
+                                editQuestionIntent.putExtra("surveyDesc",getIntent().getExtras().get("surveyDesc").toString());
+                                startActivity(editQuestionIntent);
 
                         }
                     };
@@ -109,7 +118,65 @@ public class EditSurveyActivity extends AppCompatActivity {
 
 
 
+    private void getSurvey(String token, Context context, long id,
+                           CompoundButton.OnCheckedChangeListener onCheckedChangeListener)  {
 
+        Call<SurveyDTO> call1 = NetworkService.getInstance()
+                .getJSONApi().getSurvey("Bearer_" + token,id);
+        call1.enqueue(new Callback<SurveyDTO>() {
+            @Override
+            public void onResponse(Call<SurveyDTO> call, Response<SurveyDTO> response) {
+                SurveyDTO surveyDTO = response.body();
+                if (surveyDTO != null) {
+                    if (surveyDTO.getStatus().equals("ACTIVE")){
+                        toogleButton.setChecked(true);
+                    }
+                    else{
+                        toogleButton.setChecked(false);
+                    }
+                    toogleButton.setOnCheckedChangeListener(onCheckedChangeListener);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SurveyDTO> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "onFailure called getAllSurveys", Toast.LENGTH_SHORT).show();
+                t.printStackTrace();
+                call.cancel();
+            }
+
+        });
+    }
+
+    private void changeSurveyStatus(String token, Context context,long id) {
+
+        Call<SurveyDTO> call1 = NetworkService.getInstance()
+                .getJSONApi().changeSurveyStatus("Bearer_" + token,id);
+        call1.enqueue(new Callback<SurveyDTO>() {
+            @Override
+            public void onResponse(Call<SurveyDTO> call, Response<SurveyDTO> response) {
+                SurveyDTO surveyDTO = response.body();
+                if (surveyDTO != null) {
+                    if (surveyDTO != null) {
+                        if (surveyDTO.getStatus().equals("ACTIVE")){
+
+                        }
+                        else{
+
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SurveyDTO> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "onFailure called getAllSurveys", Toast.LENGTH_SHORT).show();
+                t.printStackTrace();
+                call.cancel();
+            }
+
+        });
+    }
 
     private void getSurveyTypes(String token, Context context,long id) {
 
@@ -166,4 +233,16 @@ public class EditSurveyActivity extends AppCompatActivity {
         startActivity(editResults);
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent back = new Intent(this, MySurveyActivity.class);
+        back.putExtra("surveyId",surveyId);
+        back.putExtra("token",token);
+        startActivity(back);
+    }
+
+    @Override
+    public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+        changeSurveyStatus(token,this,surveyId);
+    }
 }

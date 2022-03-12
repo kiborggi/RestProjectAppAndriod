@@ -58,6 +58,7 @@ public class EditSurveyResults extends AppCompatActivity {
         surveyId = Long.parseLong( getIntent().getExtras().get("surveyId").toString() );
 
         spinner = (Spinner) findViewById(R.id.spinnerTypeForRes);
+        getSurveyResults(token,this,surveyId);
         getSurveyTypes(token,this,surveyId);
     }
 
@@ -150,7 +151,7 @@ public class EditSurveyResults extends AppCompatActivity {
 
 
                 List<SurveyResultToReceive> surveyResultToReceiveList = response.body();
-
+                System.out.println(surveyResultToReceiveList.size());
                 if (surveyResultToReceiveList != null) {
                     SurveyResultAdapter.OnSurveyResultListener questionClickListener = new SurveyResultAdapter.OnSurveyResultListener() {
                         @Override

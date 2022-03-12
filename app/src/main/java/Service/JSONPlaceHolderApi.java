@@ -85,6 +85,12 @@ public interface JSONPlaceHolderApi {
     @GET("/api/v1/survey/getResultsOfSurvey/{id}")
     Call<List<SurveyResultToReceive>> getResultsOfSurvey(@Header("Authorization") String token, @Path("id") long id);
 
+    @GET("/api/v1/survey/getAttemptsOfSurvey/{id}")
+    Call<List<AttemptDTO>> getAttemptsOfSurvey(@Header("Authorization") String token, @Path("id") long id);
+
     @POST("/api/v1/survey/receiveAttemptResults")
     Call<TmpDTO> receiveAttemptResults(@Header("Authorization") String token, @Body AttemptToSend atempt);
+
+    @POST("/api/v1/survey/changeSurveyStatus/{id}")
+    Call<SurveyDTO> changeSurveyStatus(@Header("Authorization") String token, @Path("id") long id);
 }

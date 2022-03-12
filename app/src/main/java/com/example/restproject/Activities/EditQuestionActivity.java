@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -40,7 +41,7 @@ public class EditQuestionActivity extends AppCompatActivity {
     Intent editAnswer;
     long sureyId;
     TextView questionName;
-
+    Button buttonaAddAnswer;
     EditText editTextAnswerText;
 
     @Override
@@ -53,8 +54,15 @@ public class EditQuestionActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.listOfAnswers);
 
         questionName = findViewById(R.id.editQuestionText);
+        buttonaAddAnswer= findViewById(R.id.buttonaAddAnswer);
+
 
         editTextAnswerText = findViewById(R.id.editTextAnswerText);
+
+        if(getIntent().getExtras().get("questionType").toString().equals("NUMERIC")){
+            editTextAnswerText.setVisibility(View.INVISIBLE);
+            buttonaAddAnswer.setVisibility(View.INVISIBLE);
+        }
 
         if (getIntent().getExtras().get("questionText").toString() != null){
             String questionText = getIntent().getExtras().get("questionText").toString();
@@ -95,7 +103,9 @@ public class EditQuestionActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<AnswerDTO> call, Response<AnswerDTO> response) {
                 AnswerDTO answerDTO = response.body();
+                getAnswersOfQuestion(token,context,questionId);
                 if (answerDTO != null) {
+                    getAnswersOfQuestion(token,context,questionId);
                 }
             }
 
@@ -124,6 +134,12 @@ public class EditQuestionActivity extends AppCompatActivity {
                             System.out.println("put answerID  = " + answerDTO.getId());
                             editAnswer.putExtra("answerId",answerDTO.getId());
                             editAnswer.putExtra("surveyId",surveyId);
+                            editAnswer.putExtra("questionId",questionId);
+                            editAnswer.putExtra("questionType",getIntent().getExtras().get("questionType").toString());
+                            editAnswer.putExtra("surveyName",getIntent().getExtras().get("surveyName").toString());
+                            editAnswer.putExtra("surveyDesc",getIntent().getExtras().get("surveyDesc").toString());
+                            editAnswer.putExtra("questionText",getIntent().getExtras().get("questionText").toString());
+
                             editAnswer.putExtra("answerText",answerDTO.getText());
                             startActivity(editAnswer);
 
@@ -144,7 +160,15 @@ public class EditQuestionActivity extends AppCompatActivity {
         });
     }
 
-
+    @Override
+    public void onBackPressed() {
+        Intent back = new Intent(this, EditSurveyActivity.class);
+        back.putExtra("surveyName",getIntent().getExtras().get("surveyName").toString());
+        back.putExtra("surveyDesc",getIntent().getExtras().get("surveyDesc").toString());
+        back.putExtra("surveyId",surveyId);
+        back.putExtra("token",token);
+        startActivity(back);
+    }
 
 
 

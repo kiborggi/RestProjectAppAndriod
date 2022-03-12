@@ -84,4 +84,12 @@ public class MySurveyActivity extends AppCompatActivity {
     public void onClickCreateSurvey(View view){
         startActivity(intentCreateSurvey);
     }
+
+    @Override
+    public void onBackPressed() {
+      Intent  intetntMySurvey = new Intent(this, UserInfoActivity.class);
+      intetntMySurvey.putExtra("token",token);
+
+      startActivity(intetntMySurvey);
+    }
 }

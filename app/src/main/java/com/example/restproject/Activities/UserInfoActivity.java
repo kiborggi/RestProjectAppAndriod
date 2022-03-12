@@ -2,12 +2,14 @@ package com.example.restproject.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.restproject.R;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,12 +32,15 @@ public class UserInfoActivity extends AppCompatActivity {
     Intent intetntMySurvey;
     String token;
     Intent surveyAttempt;
-
+    Context context ;
+    SwipeRefreshLayout swipeRefreshLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
+        context = this;
         setContentView(R.layout.activity_user_info);
-
+ 
         intetntMySurvey = new Intent(this, MySurveyActivity.class);
         surveyAttempt = new Intent(this,SurveyAttemptActivity.class);
         userView = (TextView) findViewById(R.id.userView);
@@ -84,6 +89,7 @@ public class UserInfoActivity extends AppCompatActivity {
                         @Override
                         public void OnSurveyClick(SurveyDTO surveyDTO) {
                             surveyAttempt.putExtra("surveyId",surveyDTO.getId());
+
                             startActivity(surveyAttempt);
                         }
                     };
@@ -105,7 +111,15 @@ public class UserInfoActivity extends AppCompatActivity {
 
     public void onClickMySurvey(View view){
         intetntMySurvey.putExtra("token",token);
+
         startActivity(intetntMySurvey);
 
+    }
+    @Override
+    public void onBackPressed() {
+       Intent startMain = new Intent(Intent.ACTION_MAIN);
+        startMain.addCategory(Intent.CATEGORY_HOME);
+        startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(startMain);
     }
 }

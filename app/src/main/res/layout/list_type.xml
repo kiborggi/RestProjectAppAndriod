@@ -12,16 +12,17 @@
 
     <TextView
         android:id="@+id/typeText"
-        android:layout_width="379dp"
-        android:layout_height="48dp"
+        android:layout_width="0dp"
+        android:layout_height="29dp"
         android:layout_margin="5sp"
+        android:fontFamily="@font/lora"
         android:text="Название"
+        android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.37"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.533" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

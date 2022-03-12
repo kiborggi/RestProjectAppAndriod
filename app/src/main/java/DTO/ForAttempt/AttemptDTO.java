@@ -20,7 +20,24 @@ public class AttemptDTO {
     private SurveyFotAttempt surveyFotAttempt;
     @SerializedName("status")
     private String status;
+    @SerializedName("resultText")
+    private String resultText;
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getResultText() {
+        return resultText;
+    }
+
+    public void setResultText(String resultText) {
+        this.resultText = resultText;
+    }
 
     public Long getId() {
         return id;

@@ -78,5 +78,15 @@ public class CreateTypeActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent back = new Intent(this, EditSurveyActivity.class);
+        back.putExtra("surveyName",getIntent().getExtras().get("surveyName").toString());
+        back.putExtra("surveyDesc",getIntent().getExtras().get("surveyDesc").toString());
+        back.putExtra("surveyId",surveyId);
+        back.putExtra("token",token);
+        startActivity(back);
+    }
+
 
 }

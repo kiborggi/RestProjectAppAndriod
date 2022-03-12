@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">RestProject</string>
+    <string name="app_name">Опросы</string>
+
+    <string-array name="questionTypes">
+        <item>SINGLE</item>
+        <item>MUlTY</item>
+        <item>NUMERIC</item>
+    </string-array>
 </resources>

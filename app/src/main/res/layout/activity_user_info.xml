@@ -1,46 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/regbtn"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="2sp">
 
-    <TextView
-        android:id="@+id/userView"
-        android:layout_width="244dp"
-        android:layout_height="68dp"
-        app:layout_constraintBottom_toTopOf="@+id/listOfMyAttempts"
-        app:layout_constraintEnd_toStartOf="@+id/button2"
-        app:layout_constraintHorizontal_bias="0.06"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.941">
+    tools:context=".Activities.UserInfoActivity">
 
-    </TextView>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/listOfMyAttempts"
-        android:layout_width="402dp"
-        android:layout_height="645dp"
-        android:padding="10sp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.466"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        <TextView
+            android:id="@+id/userView"
+            android:layout_width="0dp"
+            android:layout_height="83dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/lora"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toStartOf="@+id/button2"
+            app:layout_constraintHorizontal_bias="0.304"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="120dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
-        android:onClick="onClickMySurvey"
-        android:text="Мои опросы"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        </TextView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listOfMyAttempts"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:padding="10sp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="106dp"
+            android:layout_height="64dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:backgroundTint="#353535"
+            android:fontFamily="@font/lora"
+            android:onClick="onClickMySurvey"
+            android:text="Мои опросы"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/lora"
+            android:text="Доступные опросы: "
+            android:textColor="#000000"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/userView" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

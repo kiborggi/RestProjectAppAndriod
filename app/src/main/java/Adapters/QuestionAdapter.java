@@ -42,6 +42,13 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
         QuestionDTO questionDTO = questionDTOList.get(position);
         holder.questionText.setText(questionDTO.getText());
         holder.numberOfAnswers.setText("Кол-во ответов: " + questionDTO.getNumberOfAnswers());
+        holder.typeOfQuestion.setText("Тип: " + questionDTO.getTypeOfQuestion());
+        if(questionDTO.getTypeOfQuestion().equals("NUMERIC")){
+            holder.numberTo.setText("Макс: " + questionDTO.getNumTo());
+            holder.numberFrom.setText("Мин: " + questionDTO.getNumFrom());
+            holder.numberTo.setVisibility(View.VISIBLE);
+            holder.numberFrom.setVisibility(View.VISIBLE);
+        }
         holder.itemView.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v)
@@ -66,13 +73,16 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        public final TextView questionText,numberOfAnswers;
+        public final TextView questionText,numberOfAnswers,typeOfQuestion,numberTo,numberFrom;
 
 
         ViewHolder(View view){
             super(view);
             questionText = view.findViewById(R.id.textQuestion);
             numberOfAnswers = view.findViewById(R.id.numberOfAnswers);
+            typeOfQuestion = view.findViewById(R.id.typeOfQuestion);
+            numberTo= view.findViewById(R.id.numberTo);
+            numberFrom=view.findViewById(R.id.numberFrom);
         }
     }
 }

@@ -9,54 +9,98 @@
     android:layout_margin="3sp"
     >
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="244dp"
-        android:layout_height="100dp"
-        android:layout_margin="5sp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/name"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </ImageView>
-
     <TextView
         android:id="@+id/name"
-        android:layout_width="106dp"
-        android:layout_height="59dp"
+        android:layout_width="200dp"
+        android:layout_height="54dp"
         android:layout_margin="5sp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/lora"
         android:text="Название"
+        android:textColor="#000000"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/descrition"
-        android:layout_width="341dp"
-        android:layout_height="63dp"
+        android:layout_width="340dp"
+        android:layout_height="39dp"
         android:layout_margin="5sp"
-        android:layout_marginStart="12dp"
-        android:layout_marginEnd="12dp"
+        android:layout_marginStart="16dp"
         android:text="Описание"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        android:fontFamily="@font/lora"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/name"
+        android:textColor="#000000"/>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="88dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toEndOf="@+id/name"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_human_male_board_poll" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="88dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toEndOf="@+id/name"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:srcCompat="@drawable/ic_message_question_outline" />
 
     <TextView
-        android:id="@+id/owner"
-        android:layout_width="106dp"
-        android:layout_height="34dp"
-        android:layout_margin="5sp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="4dp"
-        android:text="Владелец"
-        app:layout_constraintEnd_toStartOf="@+id/imageView"
-        app:layout_constraintHorizontal_bias="0.166"
+        android:id="@+id/textViewNumberOfAttempts"
+        android:layout_width="58dp"
+        android:layout_height="23dp"
+        android:textColor="#000000"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/lora"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/imageView" />
+
+    <TextView
+        android:id="@+id/textViewNumberOfQuestion"
+        android:layout_width="59dp"
+        android:layout_height="24dp"
+        android:textColor="#000000"
+        android:fontFamily="@font/lora"
+        android:layout_marginStart="8dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:layout_constraintTop_toTopOf="@+id/imageView2" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:textColor="#000000"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/lora"
+        android:text="Владелец: "
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name" />
+        app:layout_constraintTop_toBottomOf="@+id/descrition"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textViewOwnerName"
+        android:layout_width="138dp"
+        android:textColor="#000000"
+        android:layout_height="19dp"
+        android:layout_marginStart="24dp"
+        android:fontFamily="@font/lora"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/textView8"
+        app:layout_constraintTop_toTopOf="@+id/textView8" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

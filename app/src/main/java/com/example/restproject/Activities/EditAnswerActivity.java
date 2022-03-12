@@ -1,6 +1,7 @@
 package com.example.restproject.Activities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -54,7 +55,7 @@ public class EditAnswerActivity extends AppCompatActivity {
         token = getIntent().getExtras().get("token").toString();
         answerId = Long.parseLong( getIntent().getExtras().get("answerId").toString() );
         surveyId = Long.parseLong( getIntent().getExtras().get("surveyId").toString() );
-
+        questionId = Long.parseLong( getIntent().getExtras().get("questionId").toString() );
         spinner = (Spinner) findViewById(R.id.spinnerTypeForAnswer);
         getSurveyTypes(token,this,surveyId);
         getAnswerTypeValueOfAnswer(token,this,answerId);
@@ -187,5 +188,17 @@ public class EditAnswerActivity extends AppCompatActivity {
             }
 
         });
+    }
+    @Override
+    public void onBackPressed() {
+        Intent back = new Intent(this, EditQuestionActivity.class);
+        back.putExtra("questionText",getIntent().getExtras().get("questionText").toString());
+        back.putExtra("surveyName",getIntent().getExtras().get("surveyName").toString());
+        back.putExtra("surveyDesc",getIntent().getExtras().get("surveyDesc").toString());
+        back.putExtra("questionId",questionId);
+        back.putExtra("surveyId",surveyId);
+        back.putExtra("questionType",getIntent().getExtras().get("questionType").toString());
+        back.putExtra("token",token);
+        startActivity(back);
     }
 }

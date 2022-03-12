@@ -1,6 +1,7 @@
 package Adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,11 +24,13 @@ public class AnswerForAttemptAdapter extends RecyclerView.Adapter<AnswerForAttem
     public final AnswerForAttemptAdapter.OnAnswerForAttemptAdapterClickListener onClickListener;
     private final LayoutInflater inflater;
     private final List<AnswerForAttempt> answerDTOList;
+    private Long idToBlue;
 
-    public AnswerForAttemptAdapter(Context context, List<AnswerForAttempt> answerDTOList, AnswerForAttemptAdapter.OnAnswerForAttemptAdapterClickListener onClickListener) {
+    public AnswerForAttemptAdapter(Context context, List<AnswerForAttempt> answerDTOList, AnswerForAttemptAdapter.OnAnswerForAttemptAdapterClickListener onClickListener,long idToBlue) {
         this.onClickListener = onClickListener;
         this.answerDTOList = answerDTOList;
         this.inflater = LayoutInflater.from(context);
+        this.idToBlue = idToBlue;
     }
 
     @Override
@@ -41,6 +44,9 @@ public class AnswerForAttemptAdapter extends RecyclerView.Adapter<AnswerForAttem
     public void onBindViewHolder(AnswerForAttemptAdapter.ViewHolder holder, int position) {
         AnswerForAttempt answerDTO = answerDTOList.get(position);
         holder.answerForAttemptText.setText(answerDTO.getText());
+        if (idToBlue == answerDTO.getId()){
+            holder.answerForAttemptText.setTextColor(Color.BLUE);
+        }
 
 
         holder.itemView.setOnClickListener(new View.OnClickListener(){
@@ -71,4 +77,5 @@ public class AnswerForAttemptAdapter extends RecyclerView.Adapter<AnswerForAttem
 
         }
     }
+
 }

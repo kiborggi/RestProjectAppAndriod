@@ -9,9 +9,23 @@ public class SurveyDTO {
     public String description;
     @SerializedName("name")
     public String name;
-    @SerializedName("ownerId")
-    public long ownerID;
+    @SerializedName("ownerName")
+    public String ownerName;
+    @SerializedName("numberOfAttempts")
+    public long numberOfAttempts;
+    @SerializedName("numberOfQuestions")
+    public long numberOfQuestions;
+    @SerializedName("status")
+    public String status;
 
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public Long getId() {
         return id;
@@ -37,11 +51,27 @@ public class SurveyDTO {
         this.name = name;
     }
 
-    public long getOwnerID() {
-        return ownerID;
+    public String getOwnerName() {
+        return ownerName;
     }
 
-    public void setOwnerID(long ownerID) {
-        this.ownerID = ownerID;
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
+    }
+
+    public long getNumberOfAttempts() {
+        return numberOfAttempts;
+    }
+
+    public void setNumberOfAttempts(long numberOfAttempts) {
+        this.numberOfAttempts = numberOfAttempts;
+    }
+
+    public long getNumberOfQuestions() {
+        return numberOfQuestions;
+    }
+
+    public void setNumberOfQuestions(long numberOfQuestions) {
+        this.numberOfQuestions = numberOfQuestions;
     }
 }

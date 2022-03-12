@@ -3,6 +3,8 @@ package DTO;
 import com.google.gson.annotations.SerializedName;
 
 public class SurveyResultToReceive {
+    @SerializedName("id")
+    private  long id;
     @SerializedName("surveyId")
     private  long surveyId;
     @SerializedName("typeId")
@@ -15,6 +17,23 @@ public class SurveyResultToReceive {
     private String text;
     @SerializedName("typeText")
     private String typeText;
+
+
+    public String getTypeText() {
+        return typeText;
+    }
+
+    public void setTypeText(String typeText) {
+        this.typeText = typeText;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public long getSurveyId() {
         return surveyId;
@@ -54,13 +73,5 @@ public class SurveyResultToReceive {
 
     public void setText(String text) {
         this.text = text;
-    }
-
-    public String getTypeText() {
-        return typeText;
-    }
-
-    public void setTypeText(String typeText) {
-        this.typeText = typeText;
     }
 }

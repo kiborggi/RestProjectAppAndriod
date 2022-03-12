@@ -10,6 +10,26 @@ public class QuestionToSend {
     private long questionId;
     @SerializedName("listAnswerId")
     private TreeSet<Long> listAnswerId;
+    @SerializedName("typeOfQuestion")
+    private String typeOfQuestion;
+    @SerializedName("numValue")
+    private float numValue;
+
+    public float getNumValue() {
+        return numValue;
+    }
+
+    public void setNumValue(float numValue) {
+        this.numValue = numValue;
+    }
+
+    public String getTypeOfQuestion() {
+        return typeOfQuestion;
+    }
+
+    public void setTypeOfQuestion(String typeOfQuestion) {
+        this.typeOfQuestion = typeOfQuestion;
+    }
 
     public long getQuestionId() {
         return questionId;

@@ -18,9 +18,36 @@ public class QuestionForAttempt {
     private long surveyId;
     @SerializedName("answerForAttemptList")
     private List<AnswerForAttempt> answerForAttemptList;
+    @SerializedName("typeOfQuestion")
+    private String typeOfQuestion;
+    @SerializedName("numFrom")
+    private float numFrom;
+    @SerializedName("numTo")
+    private float numTo;
 
+    public String getTypeOfQuestion() {
+        return typeOfQuestion;
+    }
 
+    public float getNumFrom() {
+        return numFrom;
+    }
 
+    public void setNumFrom(float numFrom) {
+        this.numFrom = numFrom;
+    }
+
+    public float getNumTo() {
+        return numTo;
+    }
+
+    public void setNumTo(float numTo) {
+        this.numTo = numTo;
+    }
+
+    public void setTypeOfQuestion(String typeOfQuestion) {
+        this.typeOfQuestion = typeOfQuestion;
+    }
 
     public Long getId() {
         return id;

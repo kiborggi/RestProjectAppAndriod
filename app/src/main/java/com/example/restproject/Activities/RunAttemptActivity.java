@@ -52,12 +52,15 @@ public class RunAttemptActivity extends AppCompatActivity {
     RecyclerView recyclerAnswerForAttemptList;
     AttemptToSend attemptToSend;
     TreeSet<Long> pickedAnswers;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_run_attempt);
 
-         textViewQuestionText = findViewById(R.id.textViewQuestionText);
+        textViewQuestionText = findViewById(R.id.textViewQuestionText);
         recyclerAnswerForAttemptList = findViewById(R.id.answerForAttemptList);
 
         attemptToSend = new AttemptToSend();
@@ -71,6 +74,8 @@ public class RunAttemptActivity extends AppCompatActivity {
 
 
     public void Init(AttemptDTO a){
+
+
         this.attemptDTO = a;
         attemptToSend.setAttemptId(a.getId());
         attemptToSend.setSurveyId(a.getSurveyId());
@@ -91,18 +96,20 @@ public class RunAttemptActivity extends AppCompatActivity {
         answerClickListener = new AnswerForAttemptAdapter.OnAnswerForAttemptAdapterClickListener() {
             @Override
             public void OnAnswerForAttemptAdapterClick(AnswerForAttempt q, AnswerForAttemptAdapter.ViewHolder holder) {
-                    if (pickedAnswers.add(q.getId()) == true){
-                            holder.answerForAttemptText.setTextColor(Color.BLUE);
+
+
+                    if (pickedAnswers.add(q.getId()) == true) {
+                        holder.answerForAttemptText.setTextColor(Color.BLUE);
                         holder.answerForAttemptText.setTypeface(null, Typeface.BOLD);
-                    }
-                    else{
-                    pickedAnswers.remove(q.getId());
-                    holder.answerForAttemptText.setTextColor(Color.BLACK);
+                    } else {
+                        pickedAnswers.remove(q.getId());
+                        holder.answerForAttemptText.setTextColor(Color.BLACK);
                         holder.answerForAttemptText.setTypeface(null, Typeface.NORMAL);
+                    }
                 }
-            }
+
         };
-        AnswerForAttemptAdapter adapter = new AnswerForAttemptAdapter(this,answerForAttemptList,answerClickListener);
+        AnswerForAttemptAdapter adapter = new AnswerForAttemptAdapter(this,answerForAttemptList,answerClickListener,0);
         recyclerAnswerForAttemptList.setAdapter(adapter);
 
     }
@@ -137,17 +144,19 @@ public class RunAttemptActivity extends AppCompatActivity {
             @Override
             public void OnAnswerForAttemptAdapterClick(AnswerForAttempt q, AnswerForAttemptAdapter.ViewHolder holder) {
                 if (pickedAnswers.add(q.getId()) == true){
-                    holder.answerForAttemptText.setTextColor(Color.BLUE);
+                    holder.answerForAttemptText.setTextColor(Color.RED);
+
                 }
                 else{
                     pickedAnswers.remove(q.getId());
                     holder.answerForAttemptText.setTextColor(Color.BLACK);
+
                 }
             }
 
         };
 
-        AnswerForAttemptAdapter adapter = new AnswerForAttemptAdapter(this,answerForAttemptList,answerClickListener);
+        AnswerForAttemptAdapter adapter = new AnswerForAttemptAdapter(this,answerForAttemptList,answerClickListener,0);
         recyclerAnswerForAttemptList.setAdapter(adapter);
 
     }

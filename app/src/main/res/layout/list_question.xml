@@ -13,26 +13,63 @@
 
     <TextView
         android:id="@+id/textQuestion"
-        android:layout_width="336dp"
-        android:layout_height="45dp"
+        android:layout_width="198dp"
+        android:layout_height="52dp"
         android:layout_margin="5sp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/lora"
         android:text="Название"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.615"
+        android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/numberOfAnswers"
-        android:layout_width="326dp"
-        android:layout_height="38dp"
+        android:layout_width="197dp"
+        android:layout_height="34dp"
         android:layout_margin="5sp"
+        android:fontFamily="@font/lora"
         android:text="Название"
+        android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textQuestion"
         app:layout_constraintVertical_bias="0.111" />
+
+    <TextView
+        android:id="@+id/typeOfQuestion"
+        android:layout_width="103dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/lora"
+        android:text="TextView"
+        android:textColor="#000000"
+        app:layout_constraintStart_toEndOf="@+id/numberOfAnswers"
+        app:layout_constraintTop_toBottomOf="@+id/textQuestion" />
+
+    <TextView
+        android:id="@+id/numberFrom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:text="TextView"
+        android:visibility="invisible"
+        app:layout_constraintStart_toEndOf="@+id/textQuestion"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/numberTo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:text="TextView"
+        android:visibility="invisible"
+        app:layout_constraintStart_toEndOf="@+id/textQuestion"
+        app:layout_constraintTop_toBottomOf="@+id/numberFrom" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

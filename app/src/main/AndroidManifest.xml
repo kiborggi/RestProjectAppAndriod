@@ -12,6 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.RestProject"
+
+
         android:usesCleartextTraffic="true"
         android:networkSecurityConfig="@xml/network_security_config"
         >
@@ -56,14 +58,23 @@
             android:name=".Activities.ShowResultActivity"
             android:exported="true" />
         <activity
+            android:name=".Activities.RunAttemptTestActivity"
+            android:exported="true" />
+        <activity
             android:name=".Activities.MainActivity"
             android:exported="true" >
+
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

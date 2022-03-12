@@ -46,10 +46,14 @@ public class SurveyAdapter extends RecyclerView.Adapter<SurveyAdapter.ViewHolder
     public void onBindViewHolder(SurveyAdapter.ViewHolder holder, int position) {
         SurveyDTO surveyDTO = surveyDTOList.get(position);
         Drawable drawable = LoadImage("https://image.flaticon.com/icons/png/512/18/18436.png");
-        holder.flagView.setImageResource(R.drawable.ic_launcher_background);
+
         holder.nameView.setText(surveyDTO.getName());
         holder.descritionView.setText(surveyDTO.getDescription());
         holder.descritionView.setText(surveyDTO.getDescription());
+
+        holder.ownerNameView.setText(surveyDTO.getOwnerName());
+        holder.numberOfAttmeptView.setText(Long.toString( surveyDTO.getNumberOfAttempts()));
+        holder.numberOfQuestionView.setText(Long.toString( surveyDTO.getNumberOfQuestions()));
 
         holder.itemView.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -72,13 +76,16 @@ public class SurveyAdapter extends RecyclerView.Adapter<SurveyAdapter.ViewHolder
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         final ImageView flagView;
-        final TextView nameView, descritionView,ownerView;
+        final TextView nameView, descritionView,ownerNameView,numberOfAttmeptView,numberOfQuestionView;
         ViewHolder(View view){
             super(view);
             flagView = view.findViewById(R.id.imageView);
             nameView = view.findViewById(R.id.name);
             descritionView = view.findViewById(R.id.descrition);
-            ownerView = view.findViewById(R.id.owner);
+            ownerNameView= view.findViewById(R.id.textViewOwnerName);
+            numberOfAttmeptView= view.findViewById(R.id.textViewNumberOfAttempts);
+            numberOfQuestionView= view.findViewById(R.id.textViewNumberOfQuestion);
+
         }
     }
 
