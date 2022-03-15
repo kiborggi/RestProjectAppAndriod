@@ -172,8 +172,8 @@ public class EditAnswerActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<AnswerTypeValueDTO> call, Response<AnswerTypeValueDTO> response) {
                 AnswerTypeValueDTO answerTypeValueDTO = response.body();
+                getAnswerTypeValueOfAnswer(token,context,answerId);
                 if (answerTypeValueDTO != null) {
-                    getAnswerTypeValueOfAnswer(token,context,answerTypeValueDTO.getAnswerID());
                 }
                 else{
 
