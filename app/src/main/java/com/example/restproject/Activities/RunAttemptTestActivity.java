@@ -142,6 +142,7 @@ public class RunAttemptTestActivity extends AppCompatActivity {
                 break;
 
             case ("NUMERIC"):
+                pickedAnswers = new TreeSet<>();
                 initNumericQuestion();
                 break;
         }
