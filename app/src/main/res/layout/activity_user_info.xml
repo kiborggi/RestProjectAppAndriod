@@ -9,12 +9,12 @@
     tools:context=".Activities.UserInfoActivity">
 
 
+
         <TextView
             android:id="@+id/userView"
             android:layout_width="0dp"
             android:layout_height="83dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:fontFamily="@font/lora"
             android:textColor="#000000"
@@ -22,34 +22,39 @@
             app:layout_constraintEnd_toStartOf="@+id/button2"
             app:layout_constraintHorizontal_bias="0.304"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
 
         </TextView>
 
-        <androidx.recyclerview.widget.RecyclerView
+        <com.tsuryo.swipeablerv.SwipeableRecyclerView
             android:id="@+id/listOfMyAttempts"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:padding="10sp"
+            android:padding="1sp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
 
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+            app:layout_constraintTop_toBottomOf="@+id/textView4"
+            app:rightBgColor="@color/red"
+            app:rightImage="@drawable/ic_icons8_trash"
+            app:rightText="Delete"
+            app:textColor="@android:color/white"
+            app:textSize="20sp"/>
+
 
         <Button
             android:id="@+id/button2"
             android:layout_width="106dp"
             android:layout_height="64dp"
-            android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:backgroundTint="#353535"
             android:fontFamily="@font/lora"
             android:onClick="onClickMySurvey"
             android:text="Мои опросы"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
 
         <TextView
             android:id="@+id/textView4"

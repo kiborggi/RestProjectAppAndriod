@@ -18,7 +18,7 @@ import DTO.ForAttempt.AnswerForAttempt;
 
 public class AnswerForAttemptAdapter extends RecyclerView.Adapter<AnswerForAttemptAdapter.ViewHolder>{
     public interface OnAnswerForAttemptAdapterClickListener{
-        void OnAnswerForAttemptAdapterClick(AnswerForAttempt q,AnswerForAttemptAdapter.ViewHolder holder);
+        int OnAnswerForAttemptAdapterClick(AnswerForAttempt q,AnswerForAttemptAdapter.ViewHolder holder);
     }
 
     public final AnswerForAttemptAdapter.OnAnswerForAttemptAdapterClickListener onClickListener;
@@ -44,6 +44,12 @@ public class AnswerForAttemptAdapter extends RecyclerView.Adapter<AnswerForAttem
     public void onBindViewHolder(AnswerForAttemptAdapter.ViewHolder holder, int position) {
         AnswerForAttempt answerDTO = answerDTOList.get(position);
         holder.answerForAttemptText.setText(answerDTO.getText());
+        if (answerDTO.isChecked() == true){
+            holder.answerForAttemptText.setTextColor(Color.BLUE);
+        }else {
+            holder.answerForAttemptText.setTextColor(Color.BLACK);
+        }
+
         if (idToBlue == answerDTO.getId()){
             holder.answerForAttemptText.setTextColor(Color.BLUE);
         }
@@ -53,7 +59,10 @@ public class AnswerForAttemptAdapter extends RecyclerView.Adapter<AnswerForAttem
             @Override
             public void onClick(View v)
             {
-                onClickListener.OnAnswerForAttemptAdapterClick(answerDTO,holder);
+
+               int cliked = onClickListener.OnAnswerForAttemptAdapterClick(answerDTO,holder);
+               notifyItemChanged(cliked,0);
+               notifyDataSetChanged();
             }
         });
     }

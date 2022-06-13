@@ -2,14 +2,22 @@ package com.example.restproject.Activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.restproject.R;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 
@@ -68,6 +76,69 @@ public class MySurveyActivity extends AppCompatActivity {
                     };
                     SurveyAdapter adapter = new SurveyAdapter(context,suerveyListResp,surveyClickListener);
                     recyclerView.setAdapter(adapter);
+
+
+
+                    new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
+                        @Override
+                        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                            // this method is called
+                            // when the item is moved.
+                            return false;
+                        }
+
+
+                        @Override
+                        public void onChildDraw(Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
+                            super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+
+                            View itemView = viewHolder.itemView;
+
+                           Drawable background =   itemView.getBackground();
+
+                            if (dX > 0) {
+                                background.setBounds(itemView.getLeft(), itemView.getTop(), itemView.getLeft() + ((int) dX), itemView.getBottom());
+                            }
+                             else {
+                                background.setBounds(0, 0, 0, 0);
+                            }
+
+                            background.draw(c);
+                        }
+                        @Override
+                        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                            // this method is called when we swipe our item to right direction.
+                            // on below line we are getting the item at a particular position.
+                            SurveyDTO deletedCourse = suerveyListResp.get(viewHolder.getAdapterPosition());
+
+                            // below line is to get the position
+                            // of the item at that position.
+                            int position = viewHolder.getAdapterPosition();
+
+                            // this method is called when item is swiped.
+                            // below line is to remove item from our array list.
+                            suerveyListResp.remove(viewHolder.getAdapterPosition());
+
+                            // below line is to notify our item is removed from adapter.
+                            adapter.notifyItemRemoved(viewHolder.getAdapterPosition());
+
+                            // below line is to display our snackbar with action.
+                            Snackbar.make(recyclerView, deletedCourse.getName(), Snackbar.LENGTH_LONG).setAction("Undo", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    // adding on click listener to our action of snack bar.
+                                    // below line is to add our item to array list with a position.
+                                    suerveyListResp.add(position, deletedCourse);
+
+                                    // below line is to notify item is
+                                    // added to our adapter class.
+                                    adapter.notifyItemInserted(position);
+                                }
+                            }).show();
+                        }
+                        // at last we are adding this
+                        // to our recycler view.
+                    }).attachToRecyclerView(recyclerView);
                 }
             }
 

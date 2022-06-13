@@ -15,8 +15,16 @@ public class AnswerForAttempt {
     @SerializedName("text")
     private String text;
 
+    private boolean checked;
 
 
+    public boolean isChecked() {
+        return checked;
+    }
+
+    public void setChecked(boolean checked) {
+        this.checked = checked;
+    }
 
     public Long getId() {
         return id;

@@ -1,10 +1,19 @@
 package com.example.restproject.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.ui.AppBarConfiguration;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.restproject.R;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.android.material.snackbar.Snackbar;
+import com.tsuryo.swipeablerv.SwipeLeftRightCallback;
+import com.tsuryo.swipeablerv.SwipeableRecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
@@ -28,7 +37,7 @@ import Adapters.SurveyAdapter.*;
 public class UserInfoActivity extends AppCompatActivity {
     TextView userView;
     List<SurveyDTO> listSurvey;
-    RecyclerView recyclerView;
+    SwipeableRecyclerView recyclerView;
     Intent intetntMySurvey;
     String token;
     Intent surveyAttempt;
@@ -49,6 +58,10 @@ public class UserInfoActivity extends AppCompatActivity {
         getLogginedUserInfo(token);
         recyclerView = findViewById(R.id.listOfMyAttempts);
         getAllSurveys(token,this);
+
+
+
+
 
     }
 
@@ -96,6 +109,31 @@ public class UserInfoActivity extends AppCompatActivity {
 
                     SurveyAdapter adapter = new SurveyAdapter(context,suerveyListResp,surveyClickListener);
                     recyclerView.setAdapter(adapter);
+                    recyclerView.setListener(new SwipeLeftRightCallback.Listener() {
+                        @Override
+                        public void onSwipedLeft(int position) {
+                            SurveyDTO deletedSurvey =  suerveyListResp.remove(position);
+                            adapter.notifyDataSetChanged();
+                            Snackbar.make(recyclerView, deletedSurvey.getName(), Snackbar.LENGTH_LONG).setAction("Undo", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    // adding on click listener to our action of snack bar.
+                                    // below line is to add our item to array list with a position.
+                                    suerveyListResp.add(position, deletedSurvey);
+
+                                    // below line is to notify item is
+                                    // added to our adapter class.
+                                    adapter.notifyItemInserted(position);
+                                }
+
+                            }).show();
+                        }
+
+                        @Override
+                        public void onSwipedRight(int position) {
+
+                        }
+                    });
                 }
             }
 

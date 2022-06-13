@@ -95,7 +95,7 @@ public class RunAttemptActivity extends AppCompatActivity {
         ArrayList<AnswerForAttempt> answerForAttemptList = (ArrayList<AnswerForAttempt>) qurrentQuestion.getAnswerForAttemptList();
         answerClickListener = new AnswerForAttemptAdapter.OnAnswerForAttemptAdapterClickListener() {
             @Override
-            public void OnAnswerForAttemptAdapterClick(AnswerForAttempt q, AnswerForAttemptAdapter.ViewHolder holder) {
+            public int OnAnswerForAttemptAdapterClick(AnswerForAttempt q, AnswerForAttemptAdapter.ViewHolder holder) {
 
 
                     if (pickedAnswers.add(q.getId()) == true) {
@@ -106,6 +106,7 @@ public class RunAttemptActivity extends AppCompatActivity {
                         holder.answerForAttemptText.setTextColor(Color.BLACK);
                         holder.answerForAttemptText.setTypeface(null, Typeface.NORMAL);
                     }
+                return -1;
                 }
 
         };
@@ -142,7 +143,7 @@ public class RunAttemptActivity extends AppCompatActivity {
         ArrayList<AnswerForAttempt> answerForAttemptList = (ArrayList<AnswerForAttempt>) qurrentQuestion.getAnswerForAttemptList();
         answerClickListener = new AnswerForAttemptAdapter.OnAnswerForAttemptAdapterClickListener() {
             @Override
-            public void OnAnswerForAttemptAdapterClick(AnswerForAttempt q, AnswerForAttemptAdapter.ViewHolder holder) {
+            public int OnAnswerForAttemptAdapterClick(AnswerForAttempt q, AnswerForAttemptAdapter.ViewHolder holder) {
                 if (pickedAnswers.add(q.getId()) == true){
                     holder.answerForAttemptText.setTextColor(Color.RED);
 
@@ -152,7 +153,9 @@ public class RunAttemptActivity extends AppCompatActivity {
                     holder.answerForAttemptText.setTextColor(Color.BLACK);
 
                 }
+                return -1;
             }
+
 
         };
 

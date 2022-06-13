@@ -164,45 +164,40 @@ public class RunAttemptTestActivity extends AppCompatActivity {
         ArrayList<AnswerForAttempt> answerForAttemptList = (ArrayList<AnswerForAttempt>) currentQuestion.getAnswerForAttemptList();
         answerClickListener = new AnswerForAttemptAdapter.OnAnswerForAttemptAdapterClickListener() {
             @Override
-            public void OnAnswerForAttemptAdapterClick(AnswerForAttempt q, AnswerForAttemptAdapter.ViewHolder holder) {
+            public int OnAnswerForAttemptAdapterClick(AnswerForAttempt q, AnswerForAttemptAdapter.ViewHolder holder) {
 
                 if (pickedAnswers.size() == 0){
                     pickedAnswers.add(q.getId());
-                    holder.answerForAttemptText.setTextColor(Color.BLUE);
+                   // holder.answerForAttemptText.setTextColor(Color.BLUE);
+                    answerForAttemptList.get(holder.getAdapterPosition()).setChecked(true);
+                    return holder.getAdapterPosition();
+                }
+                else
 
-
-
-                    for (long id : pickedAnswers){
-                        System.out.println(id);
-                    }
-
-
-                }else
                 if(pickedAnswers.add(q.getId()) == false) {
                     holder.answerForAttemptText.setTextColor(Color.BLACK);
                     pickedAnswers.remove(q.getId());
 
-                    for (long id : pickedAnswers){
-                        System.out.println(id);
-                    }
+                    answerForAttemptList.get(holder.getAdapterPosition()).setChecked(false);
+                    return holder.getAdapterPosition();
 
                 }else
                 if(pickedAnswers.size() >0){
+                    int ret = 0;
+                    for (AnswerForAttempt item :answerForAttemptList){
+                        item.setChecked(false);
+                    }
+                    answerForAttemptList.get(holder.getAdapterPosition()).setChecked(true);
+
 
 
                     pickedAnswers = new TreeSet<>();
                     pickedAnswers.add(q.getId());
 
-
-                    for (long id : pickedAnswers){
-                        System.out.println(id);
-                    }
-
-
-                    initSingleQuestion(q.getId());
+                    return holder.getAdapterPosition();
 
                 }
-
+                return -1;
             }
 
         };
@@ -218,18 +213,25 @@ public class RunAttemptTestActivity extends AppCompatActivity {
         ArrayList<AnswerForAttempt> answerForAttemptList = (ArrayList<AnswerForAttempt>) currentQuestion.getAnswerForAttemptList();
         answerClickListener = new AnswerForAttemptAdapter.OnAnswerForAttemptAdapterClickListener() {
             @Override
-            public void OnAnswerForAttemptAdapterClick(AnswerForAttempt q, AnswerForAttemptAdapter.ViewHolder holder) {
+            public int OnAnswerForAttemptAdapterClick(AnswerForAttempt q, AnswerForAttemptAdapter.ViewHolder holder) {
 
 
                 if (pickedAnswers.add(q.getId()) == true) {
-                    holder.answerForAttemptText.setTextColor(Color.BLUE);
+                 //   holder.answerForAttemptText.setTextColor(Color.BLUE);
+
+                    answerForAttemptList.get(holder.getAdapterPosition()).setChecked(true);
+                    return holder.getAdapterPosition();
 
                 } else {
                     pickedAnswers.remove(q.getId());
-                    holder.answerForAttemptText.setTextColor(Color.BLACK);
-
+                    System.out.println(holder.getAdapterPosition());
+                  //  holder.answerForAttemptText.setTextColor(Color.BLACK);
+                    answerForAttemptList.get(holder.getAdapterPosition()).setChecked(false);
+                    return holder.getAdapterPosition();
                 }
+
             }
+
 
         };
         AnswerForAttemptAdapter adapter = new AnswerForAttemptAdapter(this,answerForAttemptList,answerClickListener,0);
