@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class NetworkService {
     private static NetworkService mInstance;
-    private static final String BASE_URL = "http://10.0.2.2:8075/";
+    private static final String BASE_URL = "http://89.223.67.163/";
     private Retrofit mRetrofit;
     Gson gson = new GsonBuilder()
             .setLenient()
@@ -27,6 +27,10 @@ public class NetworkService {
             mInstance = new NetworkService();
         }
         return mInstance;
+    }
+
+    public static String getBaseUrl(){
+        return BASE_URL;
     }
     public JSONPlaceHolderApi getJSONApi() {
 

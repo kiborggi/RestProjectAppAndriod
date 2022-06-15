@@ -6,4 +6,10 @@
         <item>MUlTY</item>
         <item>NUMERIC</item>
     </string-array>
+
+
+    <string-array name="surveyTypes">
+        <item>TEST</item>
+        <item>REVIEW</item>
+    </string-array>
 </resources>

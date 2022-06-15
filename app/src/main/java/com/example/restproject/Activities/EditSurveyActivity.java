@@ -44,6 +44,7 @@ public class EditSurveyActivity extends AppCompatActivity implements
     Intent createTypeIntent;
     Intent editQuestionIntent;
     ToggleButton toogleButton;
+    String surveyTypeStr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +71,7 @@ public class EditSurveyActivity extends AppCompatActivity implements
         getSurvey(token,this,surveyId,this::onCheckedChanged);
         getSurveyQuestions(token,this,surveyId);
         getSurveyTypes(token,this,surveyId);
+
     }
 
 
@@ -128,6 +130,7 @@ public class EditSurveyActivity extends AppCompatActivity implements
             public void onResponse(Call<SurveyDTO> call, Response<SurveyDTO> response) {
                 SurveyDTO surveyDTO = response.body();
                 if (surveyDTO != null) {
+                    setVisability(surveyDTO.getType());
                     if (surveyDTO.getStatus().equals("ACTIVE")){
                         toogleButton.setChecked(true);
                     }
@@ -146,6 +149,20 @@ public class EditSurveyActivity extends AppCompatActivity implements
             }
 
         });
+    }
+
+    private void setVisability(String type){
+        if (type.equals("REVIEW")){
+            recyclerViewType.setVisibility(View.GONE);
+            findViewById(R.id.textView).setVisibility(View.GONE);
+            findViewById(R.id.button4).setVisibility(View.GONE);
+            findViewById(R.id.button8).setVisibility(View.GONE);
+            findViewById(R.id.typeList).setVisibility(View.GONE);
+
+        }
+        if (type.equals("TEST")){
+            findViewById(R.id.shareButton).setVisibility(View.GONE);
+        }
     }
 
     private void changeSurveyStatus(String token, Context context,long id) {
@@ -224,6 +241,19 @@ public class EditSurveyActivity extends AppCompatActivity implements
         createTypeIntent.putExtra("surveyDesc",getIntent().getExtras().get("surveyDesc").toString());
 
         startActivity(createTypeIntent);
+    }
+    public void onClickShare(View view){
+        try {
+            Intent shareIntent = new Intent(Intent.ACTION_SEND);
+            shareIntent.setType("text/plain");
+            shareIntent.putExtra(Intent.EXTRA_SUBJECT, "My application name");
+            String shareMessage= "\nПройди мой опрос ''" +surveyName.getText()+" '' по ссылке:  \n\n";
+            shareMessage = shareMessage + NetworkService.getBaseUrl() + "web/rewiew/" + surveyId ;
+            shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
+            startActivity(Intent.createChooser(shareIntent, "choose one"));
+        } catch(Exception e) {
+            //e.toString();
+        }
     }
 
     public void onClickEditSurveyResults(View view){

@@ -9,6 +9,7 @@ public class CreateTypeDTO {
     @SerializedName("text")
     public String text;
 
+
     public long getSurveyId() {
         return surveyId;
     }

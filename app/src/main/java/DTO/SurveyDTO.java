@@ -17,10 +17,20 @@ public class SurveyDTO {
     public long numberOfQuestions;
     @SerializedName("status")
     public String status;
+    @SerializedName("type")
+    public String type;
 
 
     public String getStatus() {
         return status;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public void setStatus(String status) {

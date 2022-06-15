@@ -3,7 +3,10 @@ package com.example.restproject.Activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +31,8 @@ public class CreateSurveyActivity extends AppCompatActivity {
     EditText editDesc;
     CreateSurveyDTO createSurveyDTO;
     Intent editSurvey;
+    Spinner spinner;
+    String pickedType;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +40,27 @@ public class CreateSurveyActivity extends AppCompatActivity {
         token = getIntent().getExtras().get("token").toString();
          editName = findViewById(R.id.nameOfSurvey);
          editDesc = findViewById(R.id.decriptionOfSurvey);
+
+        spinner = (Spinner) findViewById(R.id.syrveyTypeSpinner);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent,
+                                       View itemSelected, int selectedItemPosition, long selectedId) {
+
+                String[] choose = getResources().getStringArray(R.array.surveyTypes);
+
+                pickedType = choose[selectedItemPosition];
+
+            }
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        ArrayAdapter<?> adapter =
+                ArrayAdapter.createFromResource(this, R.array.surveyTypes,
+                        android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        spinner.setAdapter(adapter);
     }
 
     public void onClickCreateSurvey(View view){
@@ -43,6 +69,7 @@ public class CreateSurveyActivity extends AppCompatActivity {
             CreateSurveyDTO createSurveyDTO = new CreateSurveyDTO();
             createSurveyDTO.setName(editName.getText().toString());
             createSurveyDTO.setDescription(editDesc.getText().toString());
+            createSurveyDTO.setType(pickedType);
             createSurvey(token,createSurveyDTO);
         }
     }

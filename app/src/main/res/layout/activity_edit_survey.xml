@@ -46,12 +46,12 @@
         android:id="@+id/toggleButton"
         android:layout_width="0dp"
         android:layout_height="53dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:checked="true"
         android:textOff="не доступен"
         android:textOn="доступен"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.68"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/surveyName"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -125,12 +125,26 @@
         android:layout_width="100dp"
         android:layout_height="61dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:backgroundTint="#353535"
         android:onClick="onClickEditSurveyResults"
         android:text="Итоги теста"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/surveyDesc"
         app:layout_constraintTop_toBottomOf="@+id/surveyName" />
+
+    <Button
+        android:id="@+id/shareButton"
+        android:layout_width="124dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="8dp"
+        android:onClick="onClickShare"
+        android:text="Share"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.466"
+        app:layout_constraintStart_toEndOf="@+id/surveyDesc"
+        app:layout_constraintTop_toBottomOf="@+id/button8" />
 </androidx.constraintlayout.widget.ConstraintLayout>
